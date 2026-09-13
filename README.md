@@ -26,29 +26,30 @@ This project implements an autonomous **Multi-Agent Research Intelligence System
 
 ```mermaid
 flowchart TD
-    A[User Query / Seed Topic] --> B[Agent 1: arXiv Ingestion Agent]
-    B -->|Structured Abstracts & Metadata| C[Agent 2: Semantic Clustering Agent]
-    C -->|Optimal Clusters & Silhouette Score| D[Agent 3: Novelty & Gap Radar Agent]
-    D -->|Novelty Scores & White Spaces| E[Agent 4: Gemini Literature Synthesizer]
+    A["User Query / Seed Topic"] --> B["Agent 1: arXiv Ingestion Agent"]
+    B --> C["Agent 2: Semantic Clustering Agent"]
+    C --> D["Agent 3: Novelty & Gap Radar Agent"]
+    D --> E["Agent 4: Gemini Literature Synthesizer"]
     
-    subgraph Streamlit Interactive Dashboard
-        F[2D PCA Semantic Landscape]
-        G[Theme & Gap Breakdown]
-        H[Top Novelty Frontier Outliers]
-        I[Live Gemini Literature Review]
+    subgraph UI ["Streamlit Interactive Dashboard"]
+        F["2D PCA Semantic Landscape"]
+        G["Theme & Gap Breakdown"]
+        H["Top Novelty Frontier Outliers"]
+        I["Live Gemini Literature Review"]
     end
     
-    C -.-> F
-    D -.-> G
-    D -.-> H
-    E -.-> I
+    C --> F
+    D --> G
+    D --> H
+    E --> I
     
-    subgraph Cloud Infrastructure
-        J[Docker Container]
-        K[AWS App Runner / EC2 Deployment]
+    subgraph Cloud ["Cloud Infrastructure"]
+        J["Docker Container"]
+        K["AWS App Runner / EC2 Deployment"]
     end
-    Streamlit Interactive Dashboard -.-> J
-    J -.-> K
+    
+    I --> J
+    J --> K
 ```
 
 ---
