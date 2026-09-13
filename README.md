@@ -3,8 +3,6 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B.svg?logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![Google-Gemini](https://img.shields.io/badge/Gemini-1.5%20Flash-8E75B2.svg?logo=google&logoColor=white)](https://ai.google.dev/)
-[![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED.svg?logo=docker&logoColor=white)](https://www.docker.com/)
-[![AWS](https://img.shields.io/badge/Deploy-AWS%20Ready-FF9900.svg?logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ---
@@ -42,14 +40,6 @@ flowchart TD
     D --> G
     D --> H
     E --> I
-    
-    subgraph Cloud ["Cloud Infrastructure"]
-        J["Docker Container"]
-        K["AWS App Runner / EC2 Deployment"]
-    end
-    
-    I --> J
-    J --> K
 ```
 
 ---
@@ -79,8 +69,6 @@ flowchart TD
 ├── app.py                        # Interactive Streamlit dashboard & landscape visualizer
 ├── research_gap.py               # Algorithmic clustering, novelty & gap engine
 ├── requirements.txt              # Core dependencies
-├── Dockerfile                    # Container configuration for AWS / cloud
-├── .dockerignore                 # Excludes caches and environment secrets
 ├── .gitignore                    # Prevents .env and secrets from being committed
 ├── .env.example                  # Environment variable template
 └── README.md                     # Comprehensive project documentation
@@ -123,49 +111,6 @@ GEMINI_API_KEY=AIzaSyYourActualKeyHere
 streamlit run app.py
 ```
 Open `http://localhost:8501` in your browser.
-
----
-
-## 🐳 Docker Containerization
-
-To run the containerized application locally:
-
-```bash
-docker build -t research-agent .
-docker run -p 8501:8501 -e GEMINI_API_KEY="your_actual_key" research-agent
-```
-
----
-
-## ☁️ Deployment on AWS
-
-### Option 1: AWS App Runner (Serverless — Recommended for MITACS)
-1. Push this repository to GitHub.
-2. In the **AWS Console**, navigate to **AWS App Runner** and click **Create service**.
-3. Choose **Source code repository** and link your GitHub repository.
-4. Configure Build:
-   - **Runtime:** Python 3
-   - **Build command:** `pip install -r requirements.txt`
-   - **Start command:** `streamlit run app.py --server.port=8080 --server.address=0.0.0.0`
-   - **Port:** `8080`
-5. Under **Environment variables**, securely add:
-   - **Key:** `GEMINI_API_KEY`
-   - **Value:** `your_gemini_api_key_here`
-6. Click **Create & Deploy**. AWS will provide a live HTTPS URL.
-
-### Option 2: AWS EC2 (Free Tier)
-1. Launch an Ubuntu 22.04 `t2.micro` or `t3.micro` EC2 instance.
-2. Allow inbound traffic on port `8501` in your Security Group.
-3. Connect via SSH and run:
-   ```bash
-   sudo apt update && sudo apt install -y python3-pip git
-   git clone https://github.com/SHIVESH89/ai-agentic-research-workflow.git
-   cd ai-agentic-research-workflow
-   pip install -r requirements.txt
-   export GEMINI_API_KEY="your_api_key"
-   nohup streamlit run app.py --server.port=8501 --server.address=0.0.0.0 &
-   ```
-4. Open `http://<EC2-PUBLIC-IP>:8501`.
 
 ---
 
