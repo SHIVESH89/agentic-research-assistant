@@ -95,22 +95,11 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 3. Configure Gemini API Key
-Create a `.env` file in the root directory:
-```bash
-cp .env.example .env
-```
-Add your free key from [Google AI Studio](https://aistudio.google.com/app/apikey):
-```env
-GEMINI_API_KEY=AIzaSyYourActualKeyHere
-```
-*(Your `.env` file is protected by `.gitignore` and will never be committed to Git).*
-
-### 4. Run the Application
+### 3. Run the Application
 ```bash
 streamlit run app.py
 ```
-Open `http://localhost:8501` in your browser.
+Open `http://localhost:8501` in your browser. *(Runs immediately out-of-the-box with built-in analytical engines).*
 
 ---
 
